@@ -11,7 +11,8 @@ import SwiftUI
 struct HWPlayerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Color.black
+                .ignoresSafeArea()
         }
     }
 }
