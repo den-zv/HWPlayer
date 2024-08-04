@@ -11,6 +11,19 @@
 		92861F252C5D5FF2008DFEB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92861F242C5D5FF2008DFEB3 /* Assets.xcassets */; };
 		92861F282C5D5FF2008DFEB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92861F272C5D5FF2008DFEB3 /* Preview Assets.xcassets */; };
 		92861F302C5FE6DD008DFEB3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 92861F2F2C5FE6DD008DFEB3 /* ComposableArchitecture */; };
+		92861F362C5FF097008DFEB3 /* ScreenSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F352C5FF097008DFEB3 /* ScreenSelectionState.swift */; };
+		92861F382C5FF09E008DFEB3 /* ScreenSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F372C5FF09E008DFEB3 /* ScreenSelectionView.swift */; };
+		92861F3C2C5FF23B008DFEB3 /* ScreenSelectionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F3B2C5FF23B008DFEB3 /* ScreenSelectionActions.swift */; };
+		92861F3E2C5FF245008DFEB3 /* ScreenSelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F3D2C5FF245008DFEB3 /* ScreenSelectionReducer.swift */; };
+		92861F412C5FF9C7008DFEB3 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F402C5FF9C7008DFEB3 /* SelectorView.swift */; };
+		92861F492C604229008DFEB3 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F482C604229008DFEB3 /* PlayerState.swift */; };
+		92861F4B2C604235008DFEB3 /* PlayerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F4A2C604235008DFEB3 /* PlayerActions.swift */; };
+		92861F4D2C60423F008DFEB3 /* PlayerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F4C2C60423F008DFEB3 /* PlayerReducer.swift */; };
+		92861F4F2C604247008DFEB3 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F4E2C604247008DFEB3 /* PlayerView.swift */; };
+		92861F512C604254008DFEB3 /* KeyPointsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F502C604254008DFEB3 /* KeyPointsState.swift */; };
+		92861F532C60425E008DFEB3 /* KeyPointsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F522C60425E008DFEB3 /* KeyPointsActions.swift */; };
+		92861F552C604267008DFEB3 /* KeyPointsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F542C604267008DFEB3 /* KeyPointsReducer.swift */; };
+		92861F572C60426F008DFEB3 /* KeyPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F562C60426F008DFEB3 /* KeyPointsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +31,19 @@
 		92861F202C5D5FEF008DFEB3 /* HWPlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWPlayerApp.swift; sourceTree = "<group>"; };
 		92861F242C5D5FF2008DFEB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92861F272C5D5FF2008DFEB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		92861F352C5FF097008DFEB3 /* ScreenSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSelectionState.swift; sourceTree = "<group>"; };
+		92861F372C5FF09E008DFEB3 /* ScreenSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSelectionView.swift; sourceTree = "<group>"; };
+		92861F3B2C5FF23B008DFEB3 /* ScreenSelectionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSelectionActions.swift; sourceTree = "<group>"; };
+		92861F3D2C5FF245008DFEB3 /* ScreenSelectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSelectionReducer.swift; sourceTree = "<group>"; };
+		92861F402C5FF9C7008DFEB3 /* SelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
+		92861F482C604229008DFEB3 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
+		92861F4A2C604235008DFEB3 /* PlayerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerActions.swift; sourceTree = "<group>"; };
+		92861F4C2C60423F008DFEB3 /* PlayerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerReducer.swift; sourceTree = "<group>"; };
+		92861F4E2C604247008DFEB3 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		92861F502C604254008DFEB3 /* KeyPointsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsState.swift; sourceTree = "<group>"; };
+		92861F522C60425E008DFEB3 /* KeyPointsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsActions.swift; sourceTree = "<group>"; };
+		92861F542C604267008DFEB3 /* KeyPointsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsReducer.swift; sourceTree = "<group>"; };
+		92861F562C60426F008DFEB3 /* KeyPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +95,9 @@
 			isa = PBXGroup;
 			children = (
 				92861F322C5FE917008DFEB3 /* App */,
+				92861F342C5FEEBE008DFEB3 /* ScreenSelection */,
+				92861F422C604005008DFEB3 /* Player */,
+				92861F432C60400D008DFEB3 /* KeyPoints */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -88,6 +117,96 @@
 				92861F262C5D5FF2008DFEB3 /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		92861F342C5FEEBE008DFEB3 /* ScreenSelection */ = {
+			isa = PBXGroup;
+			children = (
+				92861F392C5FF214008DFEB3 /* Core */,
+				92861F3A2C5FF21C008DFEB3 /* View */,
+			);
+			path = ScreenSelection;
+			sourceTree = "<group>";
+		};
+		92861F392C5FF214008DFEB3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				92861F352C5FF097008DFEB3 /* ScreenSelectionState.swift */,
+				92861F3B2C5FF23B008DFEB3 /* ScreenSelectionActions.swift */,
+				92861F3D2C5FF245008DFEB3 /* ScreenSelectionReducer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		92861F3A2C5FF21C008DFEB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92861F3F2C5FF9B6008DFEB3 /* Views */,
+				92861F372C5FF09E008DFEB3 /* ScreenSelectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92861F3F2C5FF9B6008DFEB3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				92861F402C5FF9C7008DFEB3 /* SelectorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		92861F422C604005008DFEB3 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				92861F442C6041FA008DFEB3 /* Core */,
+				92861F452C604203008DFEB3 /* View */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		92861F432C60400D008DFEB3 /* KeyPoints */ = {
+			isa = PBXGroup;
+			children = (
+				92861F462C604210008DFEB3 /* Core */,
+				92861F472C604214008DFEB3 /* View */,
+			);
+			path = KeyPoints;
+			sourceTree = "<group>";
+		};
+		92861F442C6041FA008DFEB3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				92861F482C604229008DFEB3 /* PlayerState.swift */,
+				92861F4A2C604235008DFEB3 /* PlayerActions.swift */,
+				92861F4C2C60423F008DFEB3 /* PlayerReducer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		92861F452C604203008DFEB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92861F4E2C604247008DFEB3 /* PlayerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92861F462C604210008DFEB3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				92861F502C604254008DFEB3 /* KeyPointsState.swift */,
+				92861F522C60425E008DFEB3 /* KeyPointsActions.swift */,
+				92861F542C604267008DFEB3 /* KeyPointsReducer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		92861F472C604214008DFEB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92861F562C60426F008DFEB3 /* KeyPointsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +285,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92861F3E2C5FF245008DFEB3 /* ScreenSelectionReducer.swift in Sources */,
+				92861F552C604267008DFEB3 /* KeyPointsReducer.swift in Sources */,
+				92861F512C604254008DFEB3 /* KeyPointsState.swift in Sources */,
+				92861F362C5FF097008DFEB3 /* ScreenSelectionState.swift in Sources */,
+				92861F382C5FF09E008DFEB3 /* ScreenSelectionView.swift in Sources */,
+				92861F532C60425E008DFEB3 /* KeyPointsActions.swift in Sources */,
+				92861F4F2C604247008DFEB3 /* PlayerView.swift in Sources */,
+				92861F492C604229008DFEB3 /* PlayerState.swift in Sources */,
+				92861F4B2C604235008DFEB3 /* PlayerActions.swift in Sources */,
+				92861F3C2C5FF23B008DFEB3 /* ScreenSelectionActions.swift in Sources */,
 				92861F212C5D5FEF008DFEB3 /* HWPlayerApp.swift in Sources */,
+				92861F4D2C60423F008DFEB3 /* PlayerReducer.swift in Sources */,
+				92861F412C5FF9C7008DFEB3 /* SelectorView.swift in Sources */,
+				92861F572C60426F008DFEB3 /* KeyPointsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,9 @@ import SwiftUI
 struct HWPlayerApp: App {
     var body: some Scene {
         WindowGroup {
-            Color.black
-                .ignoresSafeArea()
+            ScreenSelectionView(
+                store: .init(initialState: ScreenSelection.State(), reducer: { ScreenSelection() })
+            )
         }
     }
 }
