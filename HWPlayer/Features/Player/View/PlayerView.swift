@@ -187,6 +187,8 @@ private extension PlayerView {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     PlayerView(
         store: .init(initialState: Player.State(), reducer: { Player() })
