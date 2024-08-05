@@ -34,6 +34,8 @@
 		92861F6A2C615FFC008DFEB3 /* KeyPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F692C615FFC008DFEB3 /* KeyPoint.swift */; };
 		92861F6D2C616161008DFEB3 /* BookProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F6C2C616161008DFEB3 /* BookProvider.swift */; };
 		92861F702C616844008DFEB3 /* BookProvider.Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F6F2C616844008DFEB3 /* BookProvider.Live.swift */; };
+		92861F732C618476008DFEB3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F722C618476008DFEB3 /* AudioPlayer.swift */; };
+		92861F752C618481008DFEB3 /* AudioPlayer.Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F742C618481008DFEB3 /* AudioPlayer.Live.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		92861F692C615FFC008DFEB3 /* KeyPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPoint.swift; sourceTree = "<group>"; };
 		92861F6C2C616161008DFEB3 /* BookProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookProvider.swift; sourceTree = "<group>"; };
 		92861F6F2C616844008DFEB3 /* BookProvider.Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookProvider.Live.swift; sourceTree = "<group>"; };
+		92861F722C618476008DFEB3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		92861F742C618481008DFEB3 /* AudioPlayer.Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.Live.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				92861F6E2C616698008DFEB3 /* BookProvider */,
+				92861F712C6181C1008DFEB3 /* AudioPlayer */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -277,6 +282,15 @@
 				92861F6F2C616844008DFEB3 /* BookProvider.Live.swift */,
 			);
 			path = BookProvider;
+			sourceTree = "<group>";
+		};
+		92861F712C6181C1008DFEB3 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				92861F722C618476008DFEB3 /* AudioPlayer.swift */,
+				92861F742C618481008DFEB3 /* AudioPlayer.Live.swift */,
+			);
+			path = AudioPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92861F752C618481008DFEB3 /* AudioPlayer.Live.swift in Sources */,
 				92861F682C615FF1008DFEB3 /* Book.swift in Sources */,
 				92861F3E2C5FF245008DFEB3 /* ScreenSelectionReducer.swift in Sources */,
 				92861F552C604267008DFEB3 /* KeyPointsReducer.swift in Sources */,
@@ -367,6 +382,7 @@
 				92861F362C5FF097008DFEB3 /* ScreenSelectionState.swift in Sources */,
 				92861F6D2C616161008DFEB3 /* BookProvider.swift in Sources */,
 				92861F382C5FF09E008DFEB3 /* ScreenSelectionView.swift in Sources */,
+				92861F732C618476008DFEB3 /* AudioPlayer.swift in Sources */,
 				92861F532C60425E008DFEB3 /* KeyPointsActions.swift in Sources */,
 				92861F4F2C604247008DFEB3 /* PlayerView.swift in Sources */,
 				92861F492C604229008DFEB3 /* PlayerState.swift in Sources */,
