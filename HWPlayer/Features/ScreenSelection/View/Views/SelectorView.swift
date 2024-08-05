@@ -21,16 +21,16 @@ struct SelectorView: View {
                 ZStack {
                     if selectedIndex == index {
                         Image(systemName: itemImageNames[index])
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .frame(width: 52.0, height: 52.0)
                             .background(
                                 Circle()
-                                    .foregroundColor(.blue)
+                                    .foregroundStyle(.blue)
                             )
                             .matchedGeometryEffect(id: ItemTransitionGeometryEffectID(), in: itemTransitionNamespace)
                     } else {
                         Image(systemName: itemImageNames[index])
-                            .foregroundColor(.black)
+                            .foregroundStyle(.black)
                             .frame(width: 52.0, height: 52.0)
                     }
                 }

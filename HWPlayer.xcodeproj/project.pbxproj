@@ -24,6 +24,12 @@
 		92861F532C60425E008DFEB3 /* KeyPointsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F522C60425E008DFEB3 /* KeyPointsActions.swift */; };
 		92861F552C604267008DFEB3 /* KeyPointsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F542C604267008DFEB3 /* KeyPointsReducer.swift */; };
 		92861F572C60426F008DFEB3 /* KeyPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F562C60426F008DFEB3 /* KeyPointsView.swift */; };
+		92861F5E2C605E49008DFEB3 /* Alice_2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 92861F592C605E49008DFEB3 /* Alice_2.m4a */; };
+		92861F5F2C605E49008DFEB3 /* Alice_5.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 92861F5A2C605E49008DFEB3 /* Alice_5.m4a */; };
+		92861F602C605E49008DFEB3 /* Alice_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 92861F5B2C605E49008DFEB3 /* Alice_1.m4a */; };
+		92861F612C605E49008DFEB3 /* Alice_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 92861F5C2C605E49008DFEB3 /* Alice_4.m4a */; };
+		92861F622C605E49008DFEB3 /* Alice_3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 92861F5D2C605E49008DFEB3 /* Alice_3.m4a */; };
+		92861F652C61236C008DFEB3 /* UISliderRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92861F642C61236C008DFEB3 /* UISliderRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +50,12 @@
 		92861F522C60425E008DFEB3 /* KeyPointsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsActions.swift; sourceTree = "<group>"; };
 		92861F542C604267008DFEB3 /* KeyPointsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsReducer.swift; sourceTree = "<group>"; };
 		92861F562C60426F008DFEB3 /* KeyPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsView.swift; sourceTree = "<group>"; };
+		92861F592C605E49008DFEB3 /* Alice_2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice_2.m4a; sourceTree = "<group>"; };
+		92861F5A2C605E49008DFEB3 /* Alice_5.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice_5.m4a; sourceTree = "<group>"; };
+		92861F5B2C605E49008DFEB3 /* Alice_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice_1.m4a; sourceTree = "<group>"; };
+		92861F5C2C605E49008DFEB3 /* Alice_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice_4.m4a; sourceTree = "<group>"; };
+		92861F5D2C605E49008DFEB3 /* Alice_3.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice_3.m4a; sourceTree = "<group>"; };
+		92861F642C61236C008DFEB3 /* UISliderRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISliderRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				92861F312C5FE8EC008DFEB3 /* Features */,
+				92861F632C612295008DFEB3 /* Views */,
 				92861F332C5FE922008DFEB3 /* Resources */,
 			);
 			path = HWPlayer;
@@ -113,6 +126,7 @@
 		92861F332C5FE922008DFEB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92861F582C605E33008DFEB3 /* Sounds */,
 				92861F242C5D5FF2008DFEB3 /* Assets.xcassets */,
 				92861F262C5D5FF2008DFEB3 /* Preview Content */,
 			);
@@ -209,6 +223,26 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		92861F582C605E33008DFEB3 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				92861F5B2C605E49008DFEB3 /* Alice_1.m4a */,
+				92861F592C605E49008DFEB3 /* Alice_2.m4a */,
+				92861F5D2C605E49008DFEB3 /* Alice_3.m4a */,
+				92861F5C2C605E49008DFEB3 /* Alice_4.m4a */,
+				92861F5A2C605E49008DFEB3 /* Alice_5.m4a */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		92861F632C612295008DFEB3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				92861F642C61236C008DFEB3 /* UISliderRepresentable.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -273,7 +307,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92861F602C605E49008DFEB3 /* Alice_1.m4a in Resources */,
 				92861F282C5D5FF2008DFEB3 /* Preview Assets.xcassets in Resources */,
+				92861F5F2C605E49008DFEB3 /* Alice_5.m4a in Resources */,
+				92861F5E2C605E49008DFEB3 /* Alice_2.m4a in Resources */,
+				92861F612C605E49008DFEB3 /* Alice_4.m4a in Resources */,
+				92861F622C605E49008DFEB3 /* Alice_3.m4a in Resources */,
 				92861F252C5D5FF2008DFEB3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +337,7 @@
 				92861F212C5D5FEF008DFEB3 /* HWPlayerApp.swift in Sources */,
 				92861F4D2C60423F008DFEB3 /* PlayerReducer.swift in Sources */,
 				92861F412C5FF9C7008DFEB3 /* SelectorView.swift in Sources */,
+				92861F652C61236C008DFEB3 /* UISliderRepresentable.swift in Sources */,
 				92861F572C60426F008DFEB3 /* KeyPointsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
