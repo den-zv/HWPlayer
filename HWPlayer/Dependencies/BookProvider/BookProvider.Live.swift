@@ -14,7 +14,9 @@ extension BookProvider: DependencyKey {
         // TODO: 12313 check is it called only once
         let inMemoryBookProvider = InMemoryBookProvider()
         return Self(
-            currentBook: { try await inMemoryBookProvider.book() }
+            currentBook: {
+                try await inMemoryBookProvider.book()
+            }
         )
     }
 }
@@ -28,12 +30,12 @@ private actor InMemoryBookProvider {
     }
     
     func book() throws -> Book {
-        guard let data = UIImage(named: "")?.pngData() else {
+        guard let image = UIImage(named: "Alice_cover") else {
             throw Error.imageIsMissing
         }
         
         return try .init(
-            imageData: data,
+            image: image,
             keyPoints: [
                 .init(
                     title: "Alice was beginning to get wery tired of sitting by her sister on the bank",

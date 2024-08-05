@@ -13,11 +13,15 @@ extension ScreenSelection {
     struct State: Equatable {
         
         var selectedIndex = 0
-        var tabs: [Tab] { Tab.allCases }
         
         var player = Player.State()
         var keyPoints = KeyPoints.State()
     }
+}
+
+extension ScreenSelection.State {
+    
+    var tabs: [Tab] { Tab.allCases }
 }
 
 // MARK: - Tab

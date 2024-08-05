@@ -11,5 +11,10 @@ extension Player {
     
     enum Action {
         
+        case viewAppeared
+        case bookLoaded(Book)
+        
+        case previousKeypoint
+        case nextKeypoint
     }
 }

@@ -10,7 +10,7 @@ import ComposableArchitecture
 @DependencyClient
 struct BookProvider {
     
-    var currentBook: @Sendable () async throws -> Book = { .init(imageData: .init(), keyPoints: .init()) }
+    var currentBook: @Sendable () async throws -> Book = { .init(image: .init(), keyPoints: .init()) }
 }
 
 extension BookProvider: TestDependencyKey {

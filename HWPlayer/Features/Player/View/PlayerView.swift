@@ -18,27 +18,37 @@ struct PlayerView: View {
     var body: some View {
         ZStack {
             Color(red: 255.0 / 255.0, green: 248.0 / 255.0, blue: 243.0 / 255.0)
-            VStack(spacing: 0.0) {
-                coverImage
-                    .padding(.top, 40.0)
-                    .padding(.horizontal, 80.0)
-                
-                keyPoint
-                    .padding(.top, 40.0)
-                    .padding(.horizontal, 44.0)
-                
-                slider
-                    .padding(.horizontal, 16.0)
-                    .padding(.top, 20.0)
-                
-                speedControl
-                    .padding(.top, 20.0)
-                
-                playbackControls
-                    .padding(.top, 48.0)
-                
-                Spacer()
+            
+            if store.book == nil {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .tint(Color.blue)
+            } else {
+                VStack(spacing: 0.0) {
+                    coverImage
+                        .padding(.top, 40.0)
+                        .padding(.horizontal, 80.0)
+                    
+                    keyPoint
+                        .padding(.top, 36.0)
+                        .padding(.horizontal, 44.0)
+                    
+                    slider
+                        .padding(.horizontal, 16.0)
+                        .padding(.top, 20.0)
+                    
+                    speedControl
+                        .padding(.top, 20.0)
+                    
+                    playbackControls
+                        .padding(.top, 48.0)
+                    
+                    Spacer()
+                }
             }
+        }
+        .onAppear {
+            store.send(.viewAppeared)
         }
     }
 }
@@ -49,7 +59,7 @@ private extension PlayerView {
     
     @ViewBuilder
     var coverImage: some View {
-        Image("Alice_cover")
+        Image(uiImage: store.book.image)
             .resizable()
             .aspectRatio(contentMode: .fit)
     }
@@ -57,13 +67,14 @@ private extension PlayerView {
     @ViewBuilder
     var keyPoint: some View {
         VStack(spacing: 10.0) {
-            Text("KEY POINT 2 OF 10")
+            Text("KEY POINT \(store.currentKeypointIndex + 1) OF \(store.book.keyPoints.count)")
                 .font(.system(size: 14.0, weight: .semibold))
                 .foregroundStyle(.gray)
-            Text("Design is not how a thing looks, but how it works")
+            Text(store.currentKeypoint.title)
                 .font(.system(size: 16.0))
                 .foregroundStyle(.black)
                 .multilineTextAlignment(.center)
+                .frame(height: 44.0)
         }
     }
     
@@ -129,7 +140,7 @@ private extension PlayerView {
         HStack(spacing: 18.0) {
             Button(
                 action: {
-                    print(">>>>> backward")
+                    store.send(.previousKeypoint)
                 },
                 label: {
                     Image(systemName: "backward.end")
@@ -174,7 +185,7 @@ private extension PlayerView {
             .frame(width: 44.0, height: 44.0)
             Button(
                 action: {
-                    print(">>>>> forward")
+                    store.send(.nextKeypoint)
                 },
                 label: {
                     Image(systemName: "forward.end")

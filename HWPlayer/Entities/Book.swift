@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 struct Book: Equatable {
     
-    let imageData: Data
+    let image: UIImage
     let keyPoints: [KeyPoint]
 }

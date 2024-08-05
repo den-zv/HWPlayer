@@ -12,6 +12,14 @@ extension Player {
     @ObservableState
     struct State: Equatable {
         
-        
+        var book: Book!
+        var currentKeypointIndex = 0
+    }
+}
+
+extension Player.State {
+    
+    var currentKeypoint: KeyPoint {
+        book.keyPoints[currentKeypointIndex]
     }
 }
