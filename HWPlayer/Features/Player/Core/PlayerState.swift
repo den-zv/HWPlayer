@@ -5,6 +5,7 @@
 //  Created by Denis on 05.08.2024.
 //
 
+import Foundation
 import ComposableArchitecture
 
 extension Player {
@@ -14,6 +15,10 @@ extension Player {
         
         var book: Book!
         var currentKeypointIndex = 0
+        
+        var currentTime: TimeInterval?
+        var duration: TimeInterval?
+        var isPlaying = false
     }
 }
 

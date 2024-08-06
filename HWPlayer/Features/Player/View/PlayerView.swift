@@ -162,10 +162,10 @@ private extension PlayerView {
             .frame(width: 44.0, height: 44.0)
             Button(
                 action: {
-                    print(">>>>> pause")
+                    store.send(.play)
                 },
                 label: {
-                    Image(systemName: "pause.fill")
+                    Image(systemName: store.isPlaying ? "pause.fill" : "play.fill")
                         .foregroundStyle(.black)
                         .font(.system(size: 44.0))
                 }

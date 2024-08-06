@@ -15,10 +15,9 @@ extension AudioPlayer: DependencyKey {
         return Self(
             currentTime: { await audioPlayerContainer.currentTime },
             duration: { await audioPlayerContainer.duration },
+            isPlaying: { await audioPlayerContainer.isPlaying },
             prepare: { try await audioPlayerContainer.prepare(with: $0) },
-            play: { try await audioPlayerContainer.play() },
-            pause: { await audioPlayerContainer.pause() },
-            stop: { await audioPlayerContainer.stop() }
+            play: { try await audioPlayerContainer.play() }
         )
     }
 }
@@ -34,6 +33,10 @@ private actor AudioPlayerContainer {
     
     var duration: TimeInterval? {
         player?.duration
+    }
+    
+    var isPlaying: Bool {
+        player?.isPlaying ?? false
     }
     
     func prepare(with url: URL) throws {
@@ -54,6 +57,10 @@ private actor AudioPlayerContainer {
                     throw Error.playerIsNotReady
                 }
                 
+                if player.isPlaying {
+                    player.pause()
+                }
+                
                 self.delegateProxy = .init(
                     audioPlayerDidFinishPlaying: { flag in
                         continuation.yield(flag)
@@ -66,7 +73,7 @@ private actor AudioPlayerContainer {
                 player.delegate = self.delegateProxy
                 
                 continuation.onTermination = { _ in
-                    player.stop()
+                    player.pause()
                 }
                 
                 player.play()
@@ -82,11 +89,7 @@ private actor AudioPlayerContainer {
         throw CancellationError()
     }
     
-    func pause() {
-        player?.pause()
-    }
-    
-    func stop() {
+    private func stop() {
         player?.stop()
         player = nil
         try? AVAudioSession.sharedInstance().setActive(false)

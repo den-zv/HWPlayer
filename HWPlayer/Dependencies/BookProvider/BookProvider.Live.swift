@@ -67,7 +67,7 @@ private extension KeyPoint {
     init(title: String, audioResourceName: String) throws {
         id = .init()
         self.title = title
-        guard let url = Bundle.main.url(forResource: "Alice_1", withExtension: "m4a") else {
+        guard let url = Bundle.main.url(forResource: audioResourceName, withExtension: "m4a") else {
             throw InMemoryBookProvider.Error.audioFileIsMissing
         }
         audioURL = url

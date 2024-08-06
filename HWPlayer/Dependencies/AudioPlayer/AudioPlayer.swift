@@ -13,11 +13,9 @@ struct AudioPlayer {
     
     var currentTime: @Sendable () async -> TimeInterval?
     var duration: @Sendable () async -> TimeInterval?
+    var isPlaying: @Sendable () async -> Bool = { false }
     var prepare: @Sendable (_ url: URL) async throws -> Void
     var play: @Sendable () async throws -> Bool
-    var pause: @Sendable () async -> Void
-    // TODO: 12313 check do we need it publicly
-    var stop: @Sendable () async -> Void
 }
 
 extension AudioPlayer: TestDependencyKey {
@@ -30,7 +28,11 @@ extension AudioPlayer: TestDependencyKey {
         return Self(
             currentTime: { currentTime.value },
             duration: { duration.value },
-            prepare: { _ in },
+            isPlaying: { isPlaying.value },
+            prepare: { _ in
+                isPlaying.setValue(false)
+                currentTime.setValue(0)
+            },
             play: {
                 isPlaying.setValue(true)
                 while isPlaying.value, currentTime.value < duration.value {
@@ -40,13 +42,6 @@ extension AudioPlayer: TestDependencyKey {
                 isPlaying.setValue(false)
                 currentTime.setValue(0)
                 return true
-            },
-            pause: {
-                isPlaying.setValue(false)
-            },
-            stop: {
-                isPlaying.setValue(false)
-                currentTime.setValue(0)
             }
         )
     }
