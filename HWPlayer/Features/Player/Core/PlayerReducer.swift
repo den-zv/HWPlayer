@@ -100,7 +100,6 @@ struct Player {
                         }
                         
                         let currentTime = await audioPlayer.currentTime() ?? 0.0
-                        let duration = await audioPlayer.duration() ?? 0.0
                         
                         // handling case when scrolling straight to the end of track
                         if currentTime == 0.0, time > 0.0 {
@@ -117,6 +116,12 @@ struct Player {
                 
             case .seekForward15:
                 return .send(.seek(15.0))
+                
+            case .changeRate:
+                state.rate.switchToNext()
+                return .run { [rate = state.rate.rawValue] send in
+                    await audioPlayer.updateRate(rate)
+                }
                 
             case .bookLoaded(let book):
                 guard !book.keyPoints.isEmpty else {
@@ -140,12 +145,12 @@ struct Player {
                 )
                 
             case .playerFailed:
-                // TODO: 12313 show error here
                 return .merge(
                     .send(.pause),
                     .send(.currentTimeUpdated(nil)),
                     .send(.durationUpdated(nil)),
-                    .send(.isPlayingUpdated(false))
+                    .send(.isPlayingUpdated(false)),
+                    .send(.errorOccuredUpdated(true))
                 )
                 
             case .pause:
@@ -158,12 +163,21 @@ struct Player {
                         async let updateTime: Void = send(.currentTimeUpdated(audioPlayer.currentTime()))
                         async let updateDuration: Void = send(.durationUpdated(audioPlayer.duration()))
                         async let updateIsPlaying: Void = send(.isPlayingUpdated(audioPlayer.isPlaying()))
-                        _ = await (updateTime, updateDuration, updateIsPlaying)
+                        async let errorOccured: Void = send(.errorOccuredUpdated(false))
+                        _ = await (updateTime, updateDuration, updateIsPlaying, errorOccured)
                     }
                 )
                 
+            case .seek(let delta):
+                return .run { send in
+                    guard let previousTime = await audioPlayer.currentTime() else {
+                        await send(.resetValues)
+                        return
+                    }
+                    await audioPlayer.seek(previousTime + delta)
+                }
+                
             case .currentTimeUpdated(let currentTime):
-                print(">>>>> currentTime: \(currentTime ?? -1.0)")
                 state.currentTime = currentTime
                 return .none
                 
@@ -179,14 +193,9 @@ struct Player {
                 state.seekState = seekState
                 return .none
                 
-            case .seek(let delta):
-                return .run { send in
-                    guard let previousTime = await audioPlayer.currentTime() else {
-                        await send(.resetValues)
-                        return
-                    }
-                    await audioPlayer.seek(previousTime + delta)
-                }
+            case .errorOccuredUpdated(let errorOccurred):
+                state.errorOccured = errorOccurred
+                return .none
             }
         }
     }

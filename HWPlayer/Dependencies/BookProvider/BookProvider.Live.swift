@@ -11,7 +11,6 @@ import UIKit.UIImage
 extension BookProvider: DependencyKey {
     
     static var liveValue: Self {
-        // TODO: 12313 check is it called only once
         let inMemoryBookProvider = InMemoryBookProvider()
         return Self(
             currentBook: {

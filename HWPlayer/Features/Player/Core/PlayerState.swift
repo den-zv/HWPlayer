@@ -21,6 +21,9 @@ extension Player {
         var isPlaying = false
         
         var seekState: SeekState = .inactive
+        var rate: Rate = .normal
+        
+        var errorOccured = false
     }
 }
 
@@ -30,6 +33,35 @@ extension Player.State {
         
         case inactive
         case active(wasPlaying: Bool)
+    }
+    
+    enum Rate: Float, Equatable {
+        
+        case normal = 1.0
+        case fast = 1.5
+        case doubled = 2.0
+        
+        var title: String {
+            switch self {
+            case .normal:
+                return "x1"
+            case .fast:
+                return "x1.5"
+            case .doubled:
+                return "x2"
+            }
+        }
+        
+        mutating func switchToNext() {
+            switch self {
+            case .normal:
+                self = .fast
+            case .fast:
+                self = .doubled
+            case .doubled:
+                self = .normal
+            }
+        }
     }
     
     var currentKeypoint: KeyPoint {
@@ -42,6 +74,10 @@ extension Player.State {
     
     var durationString: String {
         duration?.formattedTimeString ?? "--:--"
+    }
+    
+    var areActionsDisabled: Bool {
+        currentTime == nil || errorOccured
     }
 }
 

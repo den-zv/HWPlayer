@@ -18,7 +18,8 @@ extension AudioPlayer: DependencyKey {
             isPlaying: { await audioPlayerContainer.isPlaying },
             prepare: { try await audioPlayerContainer.prepare(with: $0) },
             play: { try await audioPlayerContainer.play() },
-            seek: { await audioPlayerContainer.seek(to: $0) }
+            seek: { await audioPlayerContainer.seek(to: $0) },
+            updateRate: { await audioPlayerContainer.update(rate: $0) }
         )
     }
 }
@@ -27,6 +28,7 @@ private actor AudioPlayerContainer {
     
     private var delegateProxy: AVAudioPlayerDelegateProxy?
     private var player: AVAudioPlayer?
+    private var rate: Float = 1.0
     
     var currentTime: TimeInterval? {
         player?.currentTime
@@ -48,6 +50,7 @@ private actor AudioPlayerContainer {
         
         player = try AVAudioPlayer(contentsOf: url)
         player!.enableRate = true
+        player!.rate = rate
         player!.prepareToPlay()
     }
     
@@ -92,6 +95,11 @@ private actor AudioPlayerContainer {
     
     func seek(to timeInterval: TimeInterval) {
         player?.currentTime = timeInterval
+    }
+    
+    func update(rate: Float) {
+        self.rate = rate
+        player?.rate = rate
     }
     
     private func stop() {

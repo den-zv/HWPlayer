@@ -12,11 +12,13 @@ struct UISliderRepresentable<Value>: UIViewRepresentable where Value : BinaryFlo
     @Binding var value: Value?
     @Binding var maximumValue: Value?
     let onEditingChanged: (Bool) -> Void
-    let sliderProvider: (UISlider) -> Void
+    let sliderCreateProvider: (UISlider) -> Void
+    let sliderUpdateProvider: (UISlider) -> Void
     
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider(frame: .zero)
-        sliderProvider(slider)
+        sliderCreateProvider(slider)
+        sliderUpdateProvider(slider)
         slider.value = Float(value ?? 0.0)
         slider.maximumValue = Float(maximumValue ?? 0.0)
         
@@ -37,6 +39,7 @@ struct UISliderRepresentable<Value>: UIViewRepresentable where Value : BinaryFlo
     func updateUIView(_ uiView: UISlider, context: Context) {
         uiView.value = Float(self.value ?? 0.0)
         uiView.maximumValue = Float(self.maximumValue ?? 0.0)
+        sliderUpdateProvider(uiView)
     }
     
     func makeCoordinator() -> Coordinator {
@@ -84,7 +87,8 @@ extension UISliderRepresentable {
                 value: $value,
                 maximumValue: .constant(10.0),
                 onEditingChanged: { _ in },
-                sliderProvider: { _ in }
+                sliderCreateProvider: { _ in },
+                sliderUpdateProvider: { _ in }
             )
         }
     }

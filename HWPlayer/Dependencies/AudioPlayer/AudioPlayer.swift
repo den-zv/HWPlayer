@@ -17,6 +17,7 @@ struct AudioPlayer {
     var prepare: @Sendable (_ url: URL) async throws -> Void
     var play: @Sendable () async throws -> Bool
     var seek: @Sendable (TimeInterval) async -> Void
+    var updateRate: @Sendable (Float) async -> Void
 }
 
 extension AudioPlayer: TestDependencyKey {
@@ -46,7 +47,8 @@ extension AudioPlayer: TestDependencyKey {
             },
             seek: {
                 currentTime.setValue($0)
-            }
+            },
+            updateRate: { _ in }
         )
     }
     

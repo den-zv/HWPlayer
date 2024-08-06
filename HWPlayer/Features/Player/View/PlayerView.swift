@@ -21,26 +21,29 @@ struct PlayerView: View {
                     .progressViewStyle(.circular)
                     .tint(Color.blue)
             } else {
-                VStack(spacing: 0.0) {
-                    coverImage
-                        .padding(.top, 40.0)
-                        .padding(.horizontal, 80.0)
-                    
-                    keyPoint
-                        .padding(.top, 36.0)
-                        .padding(.horizontal, 44.0)
-                    
-                    slider
-                        .padding(.horizontal, 16.0)
-                        .padding(.top, 20.0)
-                    
-                    speedControl
-                        .padding(.top, 20.0)
-                    
-                    playbackControls
-                        .padding(.top, 48.0)
-                    
-                    Spacer()
+                GeometryReader { geometryProxy in
+                    VStack(spacing: 0.0) {
+                        coverImage
+                            .frame(height: geometryProxy.heightAligned(340.0))
+                            .padding(.top, geometryProxy.heightAligned(40.0))
+                            .padding(.horizontal, 40.0)
+                        
+                        keyPoint
+                            .padding(.top, geometryProxy.heightAligned(36.0))
+                            .padding(.horizontal, 44.0)
+                        
+                        slider
+                            .padding(.horizontal, 16.0)
+                            .padding(.top, geometryProxy.heightAligned(20.0))
+                        
+                        speedControl
+                            .padding(.top, geometryProxy.heightAligned(20.0))
+                        
+                        playbackControls
+                            .padding(.top, geometryProxy.heightAligned(48.0))
+                        
+                        Spacer()
+                    }
                 }
             }
         }
@@ -93,17 +96,20 @@ private extension PlayerView {
                 onEditingChanged: {
                     store.send(.sliderEditingChanged($0))
                 },
-                sliderProvider: {
-                    let color = UIColor(red: 0.0 / 255.0, green: 102.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
-                    $0.minimumTrackTintColor = color
-                    $0.tintColor = color
-                    
+                sliderCreateProvider: {
                     let configuration = UIImage.SymbolConfiguration(pointSize: 18.0)
                     let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)
                     $0.setThumbImage(image, for: .normal)
+                },
+                sliderUpdateProvider: {
+                    let readyColor = UIColor(red: 0.0 / 255.0, green: 102.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+                    let erroneousColor = UIColor.red
+                    let color = store.errorOccured ? erroneousColor : readyColor
+                    $0.minimumTrackTintColor = color
+                    $0.tintColor = color
                 }
             )
-            .disabled(store.currentTime == nil)
+            .disabled(store.areActionsDisabled)
             
             HStack(spacing: 0.0) {
                 Text(store.durationString)
@@ -120,10 +126,10 @@ private extension PlayerView {
     var speedControl: some View {
         Button(
             action: {
-                print(">>>>> speed change")
+                store.send(.changeRate)
             },
             label: {
-                Text("Speed x1")
+                Text("Speed \(store.rate.title)")
                     .font(.system(size: 14.0, weight: .semibold))
                     .foregroundStyle(.black)
                     .background(
@@ -165,6 +171,7 @@ private extension PlayerView {
                 }
             )
             .frame(width: 44.0, height: 44.0)
+            .disabled(store.areActionsDisabled)
             Button(
                 action: {
                     store.send(.play)
@@ -177,6 +184,7 @@ private extension PlayerView {
             )
             .frame(width: 44.0, height: 44.0)
             .padding(.horizontal, 6.0)
+            .disabled(store.areActionsDisabled)
             Button(
                 action: {
                     store.send(.seekForward15)
@@ -188,6 +196,7 @@ private extension PlayerView {
                 }
             )
             .frame(width: 44.0, height: 44.0)
+            .disabled(store.areActionsDisabled)
             Button(
                 action: {
                     store.send(.nextKeypoint)
@@ -200,6 +209,15 @@ private extension PlayerView {
             )
             .frame(width: 44.0, height: 44.0)
         }
+    }
+}
+
+// MARK: - External declarations
+
+private extension GeometryProxy {
+    
+    func heightAligned(_ height: CGFloat) -> CGFloat {
+        size.height * height / 844.0
     }
 }
 
