@@ -27,4 +27,23 @@ extension Player.State {
     var currentKeypoint: KeyPoint {
         book.keyPoints[currentKeypointIndex]
     }
+    
+    var currentTimeString: String {
+        currentTime?.formattedTimeString ?? "--:--"
+    }
+    
+    var durationString: String {
+        duration?.formattedTimeString ?? "--:--"
+    }
+}
+
+// MARK: - External declarations
+
+private extension TimeInterval {
+    
+    var formattedTimeString: String {
+        Duration
+            .milliseconds(self * 1000.0)
+            .formatted(.time(pattern: .minuteSecond))
+    }
 }

@@ -20,8 +20,13 @@ struct Player {
     }
     
     var body: some Reducer<State, Action> {
+        BindingReducer()
+        
         Reduce { state, action in
             switch action {
+            case .binding:
+              return .none
+                
             case .viewAppeared:
                 guard state.book == nil else {
                     return .none

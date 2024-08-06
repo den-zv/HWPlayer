@@ -10,7 +10,9 @@ import ComposableArchitecture
 
 extension Player {
     
-    enum Action {
+    enum Action: BindableAction {
+        
+        case binding(BindingAction<State>)
         
         case viewAppeared
         case previousKeypoint

@@ -10,10 +10,10 @@ import ComposableArchitecture
 
 struct PlayerView: View {
     
-    let store: StoreOf<Player>
+    @Bindable var store: StoreOf<Player>
     
     // TODO: 12313 remove this
-    @State var playingTime = 3.0
+    @State var playingTime: Double? = 3.0
     
     var body: some View {
         ZStack {
@@ -81,13 +81,18 @@ private extension PlayerView {
     @ViewBuilder
     var slider: some View {
         HStack(spacing: 8.0) {
-            Text("00:28")
-                .font(.system(size: 14.0))
-                .foregroundStyle(.gray)
-                .padding(.bottom, 1.0)
+            HStack(spacing: 0.0) {
+                Spacer()
+                Text(store.currentTimeString)
+                    .font(.system(size: 14.0))
+                    .foregroundStyle(.gray)
+                    .padding(.bottom, 1.0)
+            }
+            .frame(width: 40.0)
             
             UISliderRepresentable(
-                value: $playingTime,
+                value: $store.currentTime,
+                maximumValue: $store.duration,
                 onEditingChanged: {
                     print(">>>>> onEditingChanged: \($0)")
                 },
@@ -95,19 +100,22 @@ private extension PlayerView {
                     let color = UIColor(red: 0.0 / 255.0, green: 102.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
                     $0.minimumTrackTintColor = color
                     $0.tintColor = color
-                    $0.maximumValue = 0.0
-                    $0.maximumValue = 10.0
                     
                     let configuration = UIImage.SymbolConfiguration(pointSize: 18.0)
                     let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)
                     $0.setThumbImage(image, for: .normal)
                 }
             )
+            .disabled($store.currentTime == nil)
             
-            Text("02:12")
-                .font(.system(size: 14.0))
-                .foregroundStyle(.gray)
-                .padding(.bottom, 1.0)
+            HStack(spacing: 0.0) {
+                Text(store.durationString)
+                    .font(.system(size: 14.0))
+                    .foregroundStyle(.gray)
+                    .padding(.bottom, 1.0)
+                Spacer()
+            }
+            .frame(width: 40.0)
         }
     }
     

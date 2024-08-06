@@ -9,14 +9,16 @@ import SwiftUI
 
 struct UISliderRepresentable<Value>: UIViewRepresentable where Value : BinaryFloatingPoint, Value.Stride : BinaryFloatingPoint {
     
-    @Binding var value: Value
+    @Binding var value: Value?
+    @Binding var maximumValue: Value?
     let onEditingChanged: (Bool) -> Void
     let sliderProvider: (UISlider) -> Void
     
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider(frame: .zero)
         sliderProvider(slider)
-        slider.value = Float(value)
+        slider.value = Float(value ?? 0.0)
+        slider.maximumValue = Float(maximumValue ?? 0.0)
         
         slider.addTarget(
             context.coordinator,
@@ -28,7 +30,8 @@ struct UISliderRepresentable<Value>: UIViewRepresentable where Value : BinaryFlo
     }
     
     func updateUIView(_ uiView: UISlider, context: Context) {
-        uiView.value = Float(self.value)
+        uiView.value = Float(self.value ?? 0.0)
+        uiView.maximumValue = Float(self.maximumValue ?? 0.0)
     }
     
     func makeCoordinator() -> Coordinator {
@@ -40,10 +43,10 @@ extension UISliderRepresentable {
     
     final class Coordinator: NSObject {
         
-        @Binding private var value: Value
+        @Binding private var value: Value?
         private let onEditingChanged: (Bool) -> Void
         
-        init(value: Binding<Value>, onEditingChanged: @escaping (Bool) -> Void) {
+        init(value: Binding<Value?>, onEditingChanged: @escaping (Bool) -> Void) {
             self._value = value
             self.onEditingChanged = onEditingChanged
         }
@@ -65,16 +68,14 @@ extension UISliderRepresentable {
 #Preview {
     struct Preview: View {
         
-        @State var value = 3.0
+        @State var value: Double? = 3.0
         
         var body: some View {
             UISliderRepresentable(
                 value: $value,
+                maximumValue: .constant(10.0),
                 onEditingChanged: { _ in },
-                sliderProvider: {
-                    $0.minimumValue = 0.0
-                    $0.maximumValue = 10.0
-                }
+                sliderProvider: { _ in }
             )
         }
     }
