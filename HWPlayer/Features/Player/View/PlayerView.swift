@@ -12,9 +12,6 @@ struct PlayerView: View {
     
     @Bindable var store: StoreOf<Player>
     
-    // TODO: 12313 remove this
-    @State var playingTime: Double? = 3.0
-    
     var body: some View {
         ZStack {
             Color(red: 255.0 / 255.0, green: 248.0 / 255.0, blue: 243.0 / 255.0)
@@ -94,7 +91,7 @@ private extension PlayerView {
                 value: $store.currentTime,
                 maximumValue: $store.duration,
                 onEditingChanged: {
-                    print(">>>>> onEditingChanged: \($0)")
+                    store.send(.sliderEditingChanged($0))
                 },
                 sliderProvider: {
                     let color = UIColor(red: 0.0 / 255.0, green: 102.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
@@ -106,7 +103,7 @@ private extension PlayerView {
                     $0.setThumbImage(image, for: .normal)
                 }
             )
-            .disabled($store.currentTime == nil)
+            .disabled(store.currentTime == nil)
             
             HStack(spacing: 0.0) {
                 Text(store.durationString)
@@ -159,7 +156,7 @@ private extension PlayerView {
             .frame(width: 44.0, height: 44.0)
             Button(
                 action: {
-                    print(">>>>> backward 10")
+                    store.send(.seekBackward10)
                 },
                 label: {
                     Image(systemName: "gobackward.10")
@@ -182,7 +179,7 @@ private extension PlayerView {
             .padding(.horizontal, 6.0)
             Button(
                 action: {
-                    print(">>>>> forward 15")
+                    store.send(.seekForward15)
                 },
                 label: {
                     Image(systemName: "goforward.15")

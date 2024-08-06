@@ -14,8 +14,9 @@ struct KeyPointsView: View {
     
     var body: some View {
         ZStack {
-            Color.yellow
+            Color(red: 255.0 / 255.0, green: 248.0 / 255.0, blue: 243.0 / 255.0)
             Text("KEY POINTS")
+                .foregroundStyle(.black)
         }
     }
 }

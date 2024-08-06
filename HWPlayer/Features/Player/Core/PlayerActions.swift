@@ -18,13 +18,19 @@ extension Player {
         case previousKeypoint
         case nextKeypoint
         case play
+        case sliderEditingChanged(Bool)
+        case seekBackward10
+        case seekForward15
         
         case bookLoaded(Book)
         case preparePlayer
         case playerFailed
+        case pause
         case resetValues
         case currentTimeUpdated(TimeInterval?)
         case durationUpdated(TimeInterval?)
         case isPlayingUpdated(Bool)
+        case seekStateUpdated(Player.State.SeekState)
+        case seek(TimeInterval)
     }
 }

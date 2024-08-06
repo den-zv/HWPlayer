@@ -17,7 +17,8 @@ extension AudioPlayer: DependencyKey {
             duration: { await audioPlayerContainer.duration },
             isPlaying: { await audioPlayerContainer.isPlaying },
             prepare: { try await audioPlayerContainer.prepare(with: $0) },
-            play: { try await audioPlayerContainer.play() }
+            play: { try await audioPlayerContainer.play() },
+            seek: { await audioPlayerContainer.seek(to: $0) }
         )
     }
 }
@@ -87,6 +88,10 @@ private actor AudioPlayerContainer {
         }
         
         throw CancellationError()
+    }
+    
+    func seek(to timeInterval: TimeInterval) {
+        player?.currentTime = timeInterval
     }
     
     private func stop() {

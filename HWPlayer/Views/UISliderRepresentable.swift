@@ -25,6 +25,11 @@ struct UISliderRepresentable<Value>: UIViewRepresentable where Value : BinaryFlo
             action: #selector(Coordinator.valueChanged),
             for: .valueChanged
         )
+        slider.addTarget(
+            context.coordinator,
+            action: #selector(Coordinator.touchCancel),
+            for: .touchCancel
+        )
         
         return slider
     }
@@ -61,6 +66,10 @@ extension UISliderRepresentable {
             default:
                 break
             }
+        }
+        
+        @objc fileprivate func touchCancel(_ sender: UISlider, _ event: UIEvent) {
+            onEditingChanged(false)
         }
     }
 }

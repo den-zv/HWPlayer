@@ -80,6 +80,44 @@ struct Player {
                 }
                 .cancellable(id: CancellationID.playback)
                 
+            case .sliderEditingChanged(let isEditing):
+                if isEditing {
+                    return .run { send in
+                        let isPlaying = await audioPlayer.isPlaying()
+                        await send(.seekStateUpdated(.active(wasPlaying: isPlaying)))
+                        await send(.pause)
+                    }
+                } else {
+                    guard let time = state.currentTime else {
+                        return .none
+                    }
+                    return .run { [seekState = state.seekState] send in
+                        await audioPlayer.seek(time)
+                        await send(.seekStateUpdated(.inactive))
+                        
+                        guard case .active(let wasPlaying) = seekState, wasPlaying else {
+                            return
+                        }
+                        
+                        let currentTime = await audioPlayer.currentTime() ?? 0.0
+                        let duration = await audioPlayer.duration() ?? 0.0
+                        
+                        // handling case when scrolling straight to the end of track
+                        if currentTime == 0.0, time > 0.0 {
+                            await send(.resetValues)
+                            return
+                        }
+
+                        await send(.play)
+                    }
+                }
+                
+            case .seekBackward10:
+                return .send(.seek(-10.0))
+                
+            case .seekForward15:
+                return .send(.seek(15.0))
+                
             case .bookLoaded(let book):
                 guard !book.keyPoints.isEmpty else {
                     return .none
@@ -89,7 +127,7 @@ struct Player {
                 
             case .preparePlayer:
                 return .concatenate(
-                    .cancel(id: CancellationID.playback),
+                    .send(.pause),
                     .run { [url = state.currentKeypoint.audioURL] send in
                         do {
                             try await audioPlayer.prepare(url)
@@ -104,15 +142,18 @@ struct Player {
             case .playerFailed:
                 // TODO: 12313 show error here
                 return .merge(
-                    .cancel(id: CancellationID.playback),
+                    .send(.pause),
                     .send(.currentTimeUpdated(nil)),
                     .send(.durationUpdated(nil)),
                     .send(.isPlayingUpdated(false))
                 )
                 
+            case .pause:
+                return .cancel(id: CancellationID.playback)
+                
             case .resetValues:
                 return .concatenate(
-                    .cancel(id: CancellationID.playback),
+                    .send(.pause),
                     .run { send in
                         async let updateTime: Void = send(.currentTimeUpdated(audioPlayer.currentTime()))
                         async let updateDuration: Void = send(.durationUpdated(audioPlayer.duration()))
@@ -133,6 +174,19 @@ struct Player {
             case .isPlayingUpdated(let isPlaying):
                 state.isPlaying = isPlaying
                 return .none
+                
+            case .seekStateUpdated(let seekState):
+                state.seekState = seekState
+                return .none
+                
+            case .seek(let delta):
+                return .run { send in
+                    guard let previousTime = await audioPlayer.currentTime() else {
+                        await send(.resetValues)
+                        return
+                    }
+                    await audioPlayer.seek(previousTime + delta)
+                }
             }
         }
     }

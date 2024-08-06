@@ -19,10 +19,18 @@ extension Player {
         var currentTime: TimeInterval?
         var duration: TimeInterval?
         var isPlaying = false
+        
+        var seekState: SeekState = .inactive
     }
 }
 
 extension Player.State {
+    
+    enum SeekState: Equatable {
+        
+        case inactive
+        case active(wasPlaying: Bool)
+    }
     
     var currentKeypoint: KeyPoint {
         book.keyPoints[currentKeypointIndex]
